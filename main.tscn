@@ -1,0 +1,302 @@
+[gd_scene load_steps=20 format=3 uid="uid://c8p0lgmyio0jb"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ymc8q"]
+[ext_resource type="PackedScene" uid="uid://b7p68eet3eguv" path="res://baracade.tscn" id="2_h6aan"]
+[ext_resource type="PackedScene" uid="uid://dp2pbdk57um5c" path="res://Enemies/enemy1/enemy1.tscn" id="2_urds3"]
+[ext_resource type="PackedScene" uid="uid://ddy06gs0wfnd3" path="res://Enemies/enemy2/enemy2.tscn" id="3_btjmo"]
+[ext_resource type="PackedScene" uid="uid://rqyhwtde1rnl" path="res://tank/tank.tscn" id="3_r1pjk"]
+[ext_resource type="AudioStream" uid="uid://ias6etarib6g" path="res://Audio/doot1.wav" id="3_x42jn"]
+[ext_resource type="PackedScene" uid="uid://bqdaeub6g2x38" path="res://Enemies/enemy3/enemy3.tscn" id="4_ufujx"]
+[ext_resource type="AudioStream" uid="uid://bpox1ebq6asm4" path="res://Audio/doot2.wav" id="4_vlnvt"]
+[ext_resource type="AudioStream" uid="uid://dnbxg7f1cyk2i" path="res://Audio/doot3.wav" id="5_2lcpv"]
+[ext_resource type="PackedScene" uid="uid://ujc5irllms2w" path="res://Enemies/bonus saucer/enemy_bonus.tscn" id="5_cppk6"]
+[ext_resource type="Theme" uid="uid://beqfvcdrude00" path="res://default_theme.tres" id="5_j7o0y"]
+[ext_resource type="Texture2D" uid="uid://dnod3r1cl3cmq" path="res://Cabnet border.png" id="5_mre85"]
+[ext_resource type="AudioStream" uid="uid://rggnvqv033qu" path="res://Audio/doot4.wav" id="6_djcw3"]
+[ext_resource type="FontFile" uid="uid://bly7nvwy4k57k" path="res://PixeloidMono-d94EV.ttf" id="6_mucgq"]
+[ext_resource type="Texture2D" uid="uid://isgbcneot10c" path="res://tank/minime.png" id="7_asuo5"]
+
+[sub_resource type="Curve2D" id="Curve2D_s4r8q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 324, 60, 0, 0, 0, 0, 960, 60)
+}
+point_count = 2
+
+[sub_resource type="InputEventAction" id="InputEventAction_1b2iw"]
+action = &"shoot"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_2fpgi"]
+events = [SubResource("InputEventAction_1b2iw")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3wi3i"]
+font = ExtResource("6_mucgq")
+font_size = 27
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ymc8q")
+invader1_scene = ExtResource("2_urds3")
+invader2_scene = ExtResource("3_btjmo")
+invader3_scene = ExtResource("4_ufujx")
+invader_bonus_scene = ExtResource("5_cppk6")
+doot1 = ExtResource("3_x42jn")
+doot2 = ExtResource("4_vlnvt")
+doot3 = ExtResource("5_2lcpv")
+doot4 = ExtResource("6_djcw3")
+
+[node name="Tank" parent="." instance=ExtResource("3_r1pjk")]
+position = Vector2(640, 650)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s4r8q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(324, 60)
+
+[node name="saucer" parent="Path2D/PathFollow2D" instance=ExtResource("5_cppk6")]
+
+[node name="InvaderBlock" type="Node2D" parent="."]
+position = Vector2(473, 108)
+
+[node name="Row 1" type="Node2D" parent="InvaderBlock"]
+
+[node name="Marker2D1" type="Marker2D" parent="InvaderBlock/Row 1"]
+
+[node name="Marker2D2" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(48, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(96, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(144, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(192, 0)
+
+[node name="Marker2D6" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(240, 0)
+
+[node name="Marker2D7" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(288, 0)
+
+[node name="Marker2D8" type="Marker2D" parent="InvaderBlock/Row 1"]
+position = Vector2(336, 0)
+
+[node name="Row 2" type="Node2D" parent="InvaderBlock"]
+position = Vector2(0, 48)
+
+[node name="Marker2D1" type="Marker2D" parent="InvaderBlock/Row 2"]
+
+[node name="Marker2D2" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(48, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(96, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(144, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(192, 0)
+
+[node name="Marker2D6" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(240, 0)
+
+[node name="Marker2D7" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(288, 0)
+
+[node name="Marker2D8" type="Marker2D" parent="InvaderBlock/Row 2"]
+position = Vector2(336, 0)
+
+[node name="Row 3" type="Node2D" parent="InvaderBlock"]
+position = Vector2(0, 96)
+
+[node name="Marker2D1" type="Marker2D" parent="InvaderBlock/Row 3"]
+
+[node name="Marker2D2" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(48, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(96, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(144, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(192, 0)
+
+[node name="Marker2D6" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(240, 0)
+
+[node name="Marker2D7" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(288, 0)
+
+[node name="Marker2D8" type="Marker2D" parent="InvaderBlock/Row 3"]
+position = Vector2(336, 0)
+
+[node name="Row 4" type="Node2D" parent="InvaderBlock"]
+position = Vector2(0, 144)
+
+[node name="Marker2D1" type="Marker2D" parent="InvaderBlock/Row 4"]
+
+[node name="Marker2D2" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(48, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(96, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(144, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(192, 0)
+
+[node name="Marker2D6" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(240, 0)
+
+[node name="Marker2D7" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(288, 0)
+
+[node name="Marker2D8" type="Marker2D" parent="InvaderBlock/Row 4"]
+position = Vector2(336, 0)
+
+[node name="Row 5" type="Node2D" parent="InvaderBlock"]
+position = Vector2(0, 192)
+
+[node name="Marker2D1" type="Marker2D" parent="InvaderBlock/Row 5"]
+
+[node name="Marker2D2" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(48, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(96, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(144, 0)
+
+[node name="Marker2D5" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(192, 0)
+
+[node name="Marker2D6" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(240, 0)
+
+[node name="Marker2D7" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(288, 0)
+
+[node name="Marker2D8" type="Marker2D" parent="InvaderBlock/Row 5"]
+position = Vector2(336, 0)
+
+[node name="InvaderScenes" type="Node2D" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="InvaderMissiles" type="Node2D" parent="."]
+
+[node name="Lives" type="Node2D" parent="."]
+position = Vector2(372, 0)
+
+[node name="life 1" type="Sprite2D" parent="Lives"]
+position = Vector2(20, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("7_asuo5")
+
+[node name="life 2" type="Sprite2D" parent="Lives"]
+position = Vector2(50, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("7_asuo5")
+
+[node name="life 3" type="Sprite2D" parent="Lives"]
+position = Vector2(80, 8)
+scale = Vector2(2, 2)
+texture = ExtResource("7_asuo5")
+
+[node name="baracades" type="Node2D" parent="."]
+position = Vector2(372, 625)
+
+[node name="Baracade" parent="baracades" instance=ExtResource("2_h6aan")]
+position = Vector2(108, 0)
+
+[node name="Baracade2" parent="baracades" instance=ExtResource("2_h6aan")]
+position = Vector2(216, 0)
+
+[node name="Baracade3" parent="baracades" instance=ExtResource("2_h6aan")]
+position = Vector2(324, 0)
+
+[node name="Baracade4" parent="baracades" instance=ExtResource("2_h6aan")]
+position = Vector2(432, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_mre85")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme = ExtResource("5_j7o0y")
+text = "0"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CenterButton" type="Button" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = 5.0
+offset_right = 54.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_j7o0y")
+shortcut = SubResource("Shortcut_2fpgi")
+text = "RETRY"
+
+[node name="CenterLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -33.0
+offset_right = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_j7o0y")
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_3wi3i")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[connection signal="game_resume" from="." to="Tank" method="_on_main_game_resume"]
+[connection signal="game_soft_reset" from="." to="Tank" method="_on_main_game_soft_reset"]
+[connection signal="game_start" from="." to="Tank" method="_on_main_game_start"]
+[connection signal="tank_hit" from="Tank" to="." method="_on_tank_tank_hit"]
+[connection signal="enemy_bonus_hit" from="Path2D/PathFollow2D/saucer" to="." method="_on_saucer_enemy_bonus_hit"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/CenterButton" to="." method="_on_center_button_pressed"]

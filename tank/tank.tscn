@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://rqyhwtde1rnl"]
+
+[ext_resource type="Script" path="res://tank/tank.gd" id="1_qp7oi"]
+[ext_resource type="PackedScene" uid="uid://bs67rv4wx5g12" path="res://missile/missile.tscn" id="2_sx0m1"]
+[ext_resource type="Texture2D" uid="uid://djt6sx4iapthg" path="res://tank/Lazer Tank.png" id="3_f0ui6"]
+[ext_resource type="Texture2D" uid="uid://bca4garoxy8t8" path="res://tank/tank_destroyed/fire1.png" id="4_ktfu1"]
+[ext_resource type="Texture2D" uid="uid://dkvfo7vaqjajs" path="res://tank/tank_destroyed/fire2.png" id="5_lv7ka"]
+[ext_resource type="Texture2D" uid="uid://vph6j7toewp5" path="res://tank/tank_destroyed/fire3.png" id="6_yt74u"]
+[ext_resource type="Texture2D" uid="uid://dt2cq1fhuoayx" path="res://tank/tank_destroyed/fire4.png" id="7_1pjc3"]
+[ext_resource type="Texture2D" uid="uid://c1a3whrwfjsc2" path="res://tank/tank_destroyed/fire5.png" id="8_iar64"]
+[ext_resource type="AudioStream" uid="uid://dd4q75mejw4m4" path="res://Audio/explode.wav" id="9_gmjp6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaqab"]
+size = Vector2(46, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajw48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f0ui6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ktfu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lv7ka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yt74u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1pjc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_iar64")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 6.0
+}]
+
+[node name="Tank" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_qp7oi")
+missile_scene = ExtResource("2_sx0m1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 16.5)
+shape = SubResource("RectangleShape2D_gaqab")
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="missiles" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ajw48")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 15)
+stream = ExtResource("9_gmjp6")

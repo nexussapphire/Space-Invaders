@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddy06gs0wfnd3"]
+
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_6itya"]
+[ext_resource type="PackedScene" uid="uid://bs67rv4wx5g12" path="res://missile/missile.tscn" id="2_jg4rx"]
+[ext_resource type="Texture2D" uid="uid://c8kmcc6s1grus" path="res://Enemies/enemy2/invader_type2f1.png" id="3_ujlgp"]
+[ext_resource type="Texture2D" uid="uid://bkr8pjttx5rep" path="res://Enemies/enemy2/invader_type2f2.png" id="4_swmrc"]
+[ext_resource type="Texture2D" uid="uid://ci484r0qvacps" path="res://Enemies/enemy_pop/enemy pop1.png" id="5_354yl"]
+[ext_resource type="Texture2D" uid="uid://cgma4fdukq4x4" path="res://Enemies/enemy_pop/enemy pop2.png" id="6_l003t"]
+[ext_resource type="Texture2D" uid="uid://byrpwdjb1vnfa" path="res://Enemies/enemy_pop/enemy pop3.png" id="7_kg4ki"]
+[ext_resource type="Texture2D" uid="uid://biequ6vwhjpfd" path="res://Enemies/enemy_pop/enemy pop4.png" id="8_3tyrn"]
+[ext_resource type="Texture2D" uid="uid://6pd50b870nnu" path="res://Enemies/enemy_pop/enemy pop5.png" id="9_2iog7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi1c6"]
+size = Vector2(45, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qunh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ujlgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_swmrc")
+}],
+"loop": true,
+"name": &"Flying",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_354yl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l003t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kg4ki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3tyrn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2iog7")
+}],
+"loop": false,
+"name": &"pop",
+"speed": 15.0
+}]
+
+[node name="enemy2" type="RigidBody2D" groups=["Invaders"]]
+collision_layer = 2
+collision_mask = 8
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_6itya")
+missile_scene = ExtResource("2_jg4rx")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -4.5)
+shape = SubResource("RectangleShape2D_mi1c6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_8qunh")
+animation = &"Flying"
+frame_progress = 0.792839
+
+[node name="Missiles" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[connection signal="wall_hit" from="." to="." method="_on_wall_hit"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
