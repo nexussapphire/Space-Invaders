@@ -1,5 +1,5 @@
 # Space Invaders
-#### Video Demo: <Insert video here.>
+#### Video Demo: <https://youtu.be/iYFGuioaVrQ>
 #### Description: A somewhat faithful clone of space invaders built with GDScript on the Godot engine. All assets and sound was made by yours truly!
 
 ## Main script
